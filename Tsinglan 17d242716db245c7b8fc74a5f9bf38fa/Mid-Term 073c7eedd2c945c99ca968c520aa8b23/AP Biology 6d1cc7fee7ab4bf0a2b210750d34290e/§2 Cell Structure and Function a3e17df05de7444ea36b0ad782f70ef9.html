@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>§2 Cell Structure and Function</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a3e17df0-5de7-444e-a36b-0ad782f70ef9" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📄</span></div><h1 class="page-title">§2 <strong>Cell Structure and Function</strong></h1></header><div class="page-body"><table id="87fe91b4-8df4-4392-8ace-9ec3bbf73311" class="simple-table"><thead class="simple-table-header"><tr id="d91df106-6b3a-4a3c-8660-f5e940410a04"><th id="TJY;" class="simple-table-header-color simple-table-header">Prokaryotes</th><th id="Ugi{" class="simple-table-header-color simple-table-header">Eukaryotes</th></tr></thead><tbody><tr id="a53571e4-c558-47dd-b792-55a9ce21a512"><td id="TJY;" class="">No internal membrane</td><td id="Ugi{" class="">Contain distinct membrane-bound organelles</td></tr><tr id="d836c19f-1676-4e47-a048-00e7c5777357"><td id="TJY;" class="">Circular, naked DNA</td><td id="Ugi{" class="">DNA wrapped with histone protein and put into chromosomes, or DNA stay in a loosely chromatin</td></tr><tr id="59ff6325-4ca2-425c-abdc-cfe193ce4c93"><td id="TJY;" class="">Ribosomes are smaller</td><td id="Ugi{" class="">Ribosomes are larger</td></tr><tr id="f1ae56a1-6248-42b0-ac85-abe0472c7753"><td id="TJY;" class="">Metabolism is anaerobic/aerobic</td><td id="Ugi{" class="">Metabolism is aerobic</td></tr><tr id="cec3a199-f139-48a7-820f-efc3006e8b57"><td id="TJY;" class="">Lack of cytoskeleton</td><td id="Ugi{" class="">Exist of cytoskeleton</td></tr><tr id="d2e1be5f-8846-4ddf-9f9e-73bbf34df358"><td id="TJY;" class="">Mainly unicellular</td><td id="Ugi{" class="">Mainly multicellular</td></tr><tr id="29cc464e-107c-40be-94ef-fc1f9956d787"><td id="TJY;" class="">1-10<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>m</mi></mrow><annotation encoding="application/x-tex"> \mu m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mord mathnormal">m</span></span></span></span></span><span>﻿</span></span></td><td id="Ugi{" class="">10-100<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>m</mi></mrow><annotation encoding="application/x-tex"> \mu m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mord mathnormal">m</span></span></span></span></span><span>﻿</span></span></td></tr></tbody></table><p id="896bf224-897f-438d-b2d5-86eb6ca66343" class="">The cells are small for high efficiency of transmembrane transport</p><p id="978a3065-3280-4af2-9d64-590cac0fee01" class="">Organelles<div class="indented"><p id="63538eec-d6f2-495b-bf57-69146135f2b6" class="">Nucleolus<div class="indented"><p id="2b67a905-9b2c-458e-a4b9-c3cb561bbe23" class="">Where rRNA (ribosome RNA) and ribosomes is synthesized according to DNA instructions</p></div></p><p id="fb6e7434-1469-492f-95ac-c41ffe1a2cb0" class="">Ribosome (not membrane bonded)<div class="indented"><p id="07f82b38-d202-4488-97e9-2500b755ec41" class="">The protein factory which translate mRNA to amino acid sequence.</p><p id="fe247720-51b3-46aa-98c5-5ec008f7d7e3" class="">Free floating ribosomes are in charge of cell self use protein</p><p id="76e26769-a11d-4ffb-a523-c1f500560a31" class="">Ribosomes that are attached to ER are in charge of production of exporting proteins</p></div></p><p id="cef797ef-21b7-46c8-9ab0-260bfc7a96d7" class="">Peroxisomes<div class="indented"><p id="45caa631-4401-4a83-bdec-70229f5f2511" class="">Convert hydrogen peroxides to water</p><p id="1dbf0a64-0782-4e52-a319-d224cfdf131e" class="">Contain catalase</p><p id="4d544514-7917-4f12-a7c7-3a7c3559020b" class="">Oxidize to break down large molecules</p></div></p><p id="910e9ab1-38a8-4b82-8fac-978887102dfc" class="">Endomembrane system<div class="indented"><p id="c9ab772b-9fbe-4a69-a5ab-4186cc80e766" class="">Regulate protein traffic and perform metabolism function in cells</p><p id="421f2d3c-a0d5-4055-b05b-43bf049f76a8" class="">Includes nuclear envelope, ER, golgi apparatus, lysosomes, vesicles, vacuoles, and plasma membrane</p></div></p><p id="aa98f000-2905-4d4b-a7cb-e5bc653dcbf2" class="">Nucleus<div class="indented"><p id="712c7cc3-b967-49b1-a2fb-bd24918299ef" class="">Contains the chromatin network, surrounded with selective permeable nuclear envelope with pores for large molecules</p></div></p><p id="76829ba4-13f7-4e44-9007-eeb07dbc0d87" class="">Endoplasmic Reticulum<div class="indented"><p id="bd4b72a8-1d7d-480d-8ac0-9c13d3476a70" class="">Smooth ER<div class="indented"><p id="9f4d80f9-e7d9-413b-a4a9-db5a1966e765" class="">Assist formation of steroids hormones, store calcium ions and facilitate muscle contractions, and detoxifies drugs and poisons</p></div></p><p id="91fefce4-7f57-4c8e-815f-695713a49315" class="">Rough ER<div class="indented"><p id="2d7a6e43-b033-4945-8b8d-f0f7243b8449" class="">Studded with ribosomes and produce protein</p></div></p></div></p><p id="8d2285c7-d2ec-44fb-a2f3-11d9b76db9ce" class="">Golgi Apparatus<div class="indented"><p id="d405ca8d-3971-4a70-bf04-d4eed30220cb" class="">Consist of flatten membranous sacs (called cisternae)</p><p id="77427b50-d9be-487a-be6d-a7e57fae0859" class="">Cis face are receiving face, trans are exporting face</p><p id="22fe16d2-d6fb-4848-ac2a-e0c80f2bc858" class="">Proteins from ER are processed, packaged into vesicles and shipped out</p></div></p><p id="c4894476-3181-45c0-a1af-008c88b50653" class="">Lysosomes<div class="indented"><p id="3c43da3e-dfba-48ec-859c-10eed81d023d" class="">Sacs of hydrologic enzymes surrounded by a single membrane</p><p id="b9b1f59d-33f0-4936-9e66-15f3e5a2173f" class="">Principle sites of intracelluar digestions</p><p id="f1dafdd4-529e-4ba6-9160-3c344bf22b63" class="">Break down and renews the cell by performing autophagy</p><p id="07fe78e5-ec29-461d-bdf2-6b0c8fc95aaf" class="">Help in apoptosis (programmed cell death)</p></div></p><p id="6dc52d20-676a-4870-be9a-828635402877" class="">Mitochondria (Double membrane bounded)<div class="indented"><p id="b7952c14-3e34-47e2-a89f-62302e5aced7" class="">Endosymbiotic theory—eukaryotic cells emerge by engulfing other prokaryotes</p><p id="165892c0-c3fd-43b9-800d-93940b86b5bc" class="">Cell respiration </p><figure id="5fd36363-bbfe-449f-89e5-7d8bf700efc4" class="link-to-page"><a href="%C2%A73%20Cellular%20Energetics%20377b2964599744f48c73f625f443b94e/Cell%20Respiration%205fd36363bbfe449f89e57d8bf700efc4.html"><span class="icon">✏️</span>Cell Respiration</a></figure></div></p><p id="e04aec0d-b932-4e08-adf4-a8c118202ce7" class="">Vacuoles<div class="indented"><p id="4d08f19f-8ab2-484f-aeca-991c67843315" class="">Plants have large central vacuole</p><p id="dd8b41e6-61d4-4d6c-ac18-e9abeaa45915" class="">Fresh water protists have contractile vacuoles to pump out water</p><p id="ac1e64ba-603a-4259-bf1e-32c8412c18c1" class="">Food vacuoles are formed by phagocytosis of foreign material</p></div></p><p id="723d6428-7d2c-4efa-a14e-7cf63d30097d" class="">Chloroplast (Double membrane bounded)<div class="indented"><p id="1f6ad19d-e318-40a4-b474-ac8cd18b3a23" class="">Endosymbiotic theory—eukaryotic cells emerge by engulfing other prokaryotes</p><p id="1bc01928-e64a-4456-96b4-10c9960d32d2" class="">Photosynthesis</p><figure id="3920ac25-5239-4bab-9fab-0fe9cce4b317" class="link-to-page"><a href="%C2%A73%20Cellular%20Energetics%20377b2964599744f48c73f625f443b94e/Photosynthesis%203920ac2552394bab9fab0fe9cce4b317.html"><span class="icon">✏️</span>Photosynthesis</a></figure></div></p><p id="cc6463f2-2d54-4829-88f7-7341ad7d4ba6" class="">Cytoskeleton<div class="indented"><p id="a6271e52-334f-4838-8129-af98a4455f13" class="">Complex mesh of protein filaments that extends throughout the cytoplasm</p><p id="b9b8ccdc-ee53-47a2-a71d-a549002ebe8b" class="">It can maintain the cell shape, anchoring organelles, aids cytoplasmic streaming, anchoring cells to extracellular elements</p><p id="ffb04737-2177-4716-8550-f32ef0f6f38d" class="">Microtubules<div class="indented"><p id="cb7b39ec-544e-440d-8d47-84f1f5ccd113" class="">Cilia, flagella<div class="indented"><p id="2502f2a9-9b8c-42ab-bdca-8ff236894653" class="">Move the cell from one place to another</p></div></p><p id="e199594a-2bab-4b22-a6f9-06b38c6361e5" class="">Spindle fibers<div class="indented"><p id="f0a1a212-ba3a-4b7c-b2de-38a2f2adc8ca" class="">Separate the chromosome in cell devision</p></div></p></div></p><p id="91555fb3-e8d2-48b7-b1a2-778e496098f6" class="">Microfilaments (made from actin filaments)<div class="indented"><p id="81cfdd5a-cc46-45f4-afd4-f9dd31cea3ef" class="">support the cell shape</p><p id="8671bb8e-cfab-44e9-8664-67f6de91d80c" class="">Cleavage furrow in animal cell division</p><p id="17643cd3-13e7-4f2c-9911-b77f048b9cd1" class="">Pseudopods that moves cells ameba around</p><p id="e1847aca-67ef-4dd1-a7ad-7f43db1febe9" class="">Skeletal muscle contractions </p></div></p></div></p><p id="34feb910-9e99-4ab7-b1e2-8837d4a147fc" class="">Centrioles, centrosomes, and the Microtubule Organizing Centers (MTOCs) (not membrane bonded)<div class="indented"><p id="993350fc-2b91-4b37-b802-b20935a56ed4" class="">Organize spindle fibers and aids cell division</p></div></p><p id="85d3baed-7757-4238-b669-d3c81166adfd" class="">Cell Wall<div class="indented"><p id="b0bf2c52-2688-4cce-bb0a-fafd90c34d0e" class="">Made of cellulose (plants and algae), chitin (fungi) and other polysaccharides/polymers (otero prokaryotes)</p><p id="00f56081-c064-4bac-a148-68a2a90dc9a6" class="">All cell with cell walls have at least primary cell wall that is immediately outside the plasma membrane</p><p id="de1c4f33-5c81-499e-b4fb-5f3a05973a9d" class="">Certain cell produce a second cell wall underneath the primary cell wall</p><p id="0ba88930-d7b6-4493-a6af-1eb239831dae" class="">Middle Lamella is produced when plant cells divides</p></div></p><p id="27355bef-fd0c-4bcc-a241-dc456be60a01" class="">Plasma Membrane<div class="indented"><p id="6ed66952-8fdc-4870-b288-ee8e7da7cc27" class="">Selective membrane with cholesterols, protein channels, peripheral proteins, integral proteins (includes the protein channels), glycoprotein (may be any protein outsides the cell), and phospholipid (bilayers).</p><p id="049c8501-1892-45e5-a134-8f47eb26d96f" class="">It can<div class="indented"><p id="cca2c2ee-b7df-497e-a251-9e3dfc102d06" class="">Transport</p><p id="c1677cbe-26ea-4c9c-b5a9-7d968beaf3b1" class="">Enzyme activity</p><p id="e0cde329-dd18-4ada-9c50-9b9ba45073d7" class="">Signal transduction</p><p id="e7f1c505-e4ec-49ae-a37a-122cbb854ec0" class="">Cell-to-cell recognition</p><p id="bc32ac4c-34e9-4aba-9065-831305d08686" class="">Cell-to-cell attachment</p><p id="b51420ee-450b-4920-876e-9f2adc8443e9" class="">Attachment to the cytoskeleton and extracellular matrix</p></div></p></div></p><p id="8a3376f9-4f2d-4783-a2be-134f6852a973" class="">Cell transportation<div class="indented"><p id="f85e7b20-cf42-4073-8695-a1cc1ec06d7d" class="">Types of transport (energy)<div class="indented"><p id="b4c0ffec-f6c2-4749-94cf-a01591de79b4" class="">Passive transport<div class="indented"><p id="21b6a76a-b7e6-4ae3-ab78-0303937934d4" class="">Does not need ATP to power</p><p id="2fcda7b4-952f-480d-b909-c824e69beb67" class="">Down the concentration gradient</p></div></p><p id="07813b24-657f-41e6-ba24-edaba82450d1" class="">Active transport<div class="indented"><p id="76f22bf0-98b0-4668-9883-5fe23283760e" class="">Need ATP (or other energy source) to power</p><p id="9c2b35f4-deb0-4c35-b27b-87e64bd9e661" class="">Up the concentration gradient</p></div></p></div></p><p id="b5599b06-6aef-4ac7-965e-3cce727f59b5" class="">Types of transport (detailed)<div class="indented"><p id="1d44446a-b139-49f2-a328-39ff036b98a5" class="">Osmosis (Passive)<div class="indented"><p id="e9a98ad9-0d9f-4da4-bd83-c485e49b4ebc" class="">The flow of water through the phosphate bilayer</p><p id="1e741b47-a255-402e-9030-8f72bc4b0789" class="">Cell in water<div class="indented"><p id="ceb4a4df-c3c3-40c8-ae40-ed5d638ed63c" class="">Hypotonic<div class="indented"><p id="111d756b-a4e8-45d0-a044-5bedc4c71cfa" class="">Water flow in and cell may cytolysis (death, animal cell) or become rigid (plant)</p><p id="08e9e6e1-b7b8-478e-a592-85c59d7954f9" class="">Certain cells’ fight back methods includes using contractile vacuoles or moving certain solute out the cell (vacuole)</p><p id="e0e323ac-1c2b-47a0-9570-8645573a7c53" class="">Cell has a high osmolarity, high concentration of solute, low water potential, low osmosis pressure</p></div></p><p id="14de8abd-679d-4332-9a4e-8327bd1e953a" class="">Isotonic<div class="indented"><p id="19f6e51c-cba9-4919-a9c3-8f50a08180d0" class="">No net water flow</p><p id="be041eef-558d-42c6-bd12-b223a4af857a" class="">Cell has the same osmolarity, concentration of solute, water potential, osmosis pressure as outside</p></div></p><p id="eec53148-dd46-4afc-86b1-c3dd21412cdf" class="">Hypertonic<div class="indented"><p id="74e43120-b5eb-4154-85c3-fd47253ff6b9" class="">Water flow out</p><p id="522d8dfa-cc76-44ee-b4b1-c92ac6160d0a" class="">Cell may shrink (animal) or perform plasmolysis (loss turgor pressure)(plant) at the same time</p><p id="7ef3a3c5-f288-46b6-90b2-1b3fb13d60ed" class="">Cell has a low osmolarity, low concentration of solute, high water potential, high osmosis pressure</p></div></p></div></p></div></p><p id="910f4554-0f17-4193-8c13-d29073d3d832" class="">Diffusion (Passive)<div class="indented"><p id="50ae9c35-8637-406e-983e-fa88c83fe5d3" class="">Nonpolar small molecules moves through the plasma membrane</p></div></p><p id="3783b4c8-00b1-49c5-b3da-f778cfa5347e" class="">Facilitated diffusion (Passive)<div class="indented"><p id="319fffd3-e0c1-4db3-b325-eb005dbde7b9" class="">Molecules flows through the plasma membrane via a protein channel</p><p id="3b57f2ae-887d-4fe9-aa6b-a76c4d63aa2d" class="">May be gated proteins (can open and close)</p><p id="df4b2a3a-35f7-4ec4-8ecb-153de3554a54" class="">e.g., water (aquaporins), ions (ion channels)</p></div></p><p id="5e7fba38-ac29-4f16-bf14-26baf8d7c39f" class="">Pumps/Carriers (active)<div class="indented"><p id="98d16998-39da-471b-8f14-c3935718d3f3" class="">e.g., sodium potassium pump, proton (hydrogen ion) pump, cotransport (the transport of a certain particle lets the other particle to move through)</p></div></p><p id="68a59f24-1e2f-4aa4-a035-97513ebe512b" class="">Contractile vacuoles (active)<div class="indented"><p id="25cb8363-8fb6-4b1e-ac5e-6cf723a93a60" class="">Freshwater Protista pumps out water</p></div></p><p id="84ae4642-c5d8-4898-815c-e0b281464fa6" class="">Exocytosis (active)<div class="indented"><p id="c3fdeb99-661e-4ed2-8500-4afd5eab74a8" class="">Pump out of molecules</p></div></p><p id="235a16da-3fc5-4d58-9709-7ea9590e7311" class="">Endocytosis (active)<div class="indented"><p id="87ae3a89-7a49-4bf6-acb7-b6ad87a4fdff" class="">pinocytosis<div class="indented"><p id="32d01eaf-9725-42d7-b9f3-63ef3c540498" class="">Uptake of large dissolved particles</p></div></p><p id="cedef6bb-29a3-477d-b84e-5c9874d8ace0" class="">phagocytosis<div class="indented"><p id="d4e351e2-7537-4350-adea-f2d32d8c23d9" class="">Engulf of large particles or small cells by pseudopods</p></div></p><p id="c9a6397c-5aa0-496f-b883-1d542a6b3e19" class="">Receptor-mediated endocytosis<div class="indented"><p id="393b99dd-e0dd-499b-b8c3-688926e3a31b" class="">The way that cell take up a large quantities of very specific substance</p><p id="ad8bc11e-ff8d-4ada-921f-84c2bd540758" class="">Ligand bounds to receptor and carried in by coated vesicles</p><p id="426afb7d-05c8-4a5c-b2dd-0a7f57aaf8b0" class="">e.g., cholesterol take in</p></div></p></div></p></div></p></div></p><p id="f4d1e925-c7b8-41ea-9f37-8ea2acb0c8a4" class="">Build flow<div class="indented"><p id="33388c02-b82c-4b4a-8012-619f23d6c8f9" class="">The overall flow of liquid</p><p id="1aa335bd-6899-429d-93db-e4e8d47dcfd7" class="">From source to sink</p></div></p><p id="97898edc-a128-47dd-bca4-b4112d127a6b" class="">Cell Communication <mark class="highlight-red">Not needed for Midterm exam</mark><div class="indented"><p id="a943d061-485b-4549-81f7-090b52f8f5ed" class="">Quorum sensing in bacteria<div class="indented"><p id="3dbcf1af-959e-4b22-a6de-6f508cf1085b" class="">Bacteria produce a certain molecules and secret into the environment, if there are a great amount of the given molecules, than the cell will know there are a great amount i of bacteria of the same kind in the environment</p></div></p><p id="820ad341-eb6e-45bc-999c-e74cfe4121e3" class="">Direct contact<div class="indented"><p id="f25dad33-aece-4a4e-ba3b-9d9d5cd8f6f0" class="">Gap junctions (animal)<div class="indented"><p id="da5f3869-b6be-43d2-a307-5bec9803216f" class="">The flow of ions in heart muscles</p></div></p><p id="13e2e7cf-8fc4-4bc9-b918-64563bc250c6" class="">Plasmodesmata (plant)</p><p id="c52a8bce-81a6-4317-bae9-782d06b10c57" class="">Direct contact between membrane-bound molecules is the basis of the human immune system.</p></div></p><p id="37d1ac90-729c-491e-9d1c-dd6b67282d81" class="">Local signaling<div class="indented"><p id="4b59bb5f-8587-4a7f-bd2a-d3b8f7b77b4f" class="">Paracrine signaling<div class="indented"><p id="540fcfee-a4f3-410b-81bd-1e9ae9192899" class="">One layer of cells induces a nearby layer to transform into another cell type</p></div></p><p id="a2976a20-1868-4798-b605-ade1bb427566" class="">Synaptic signaling<div class="indented"><p id="02430d6d-e338-43c3-9144-76b3432cca29" class="">Neurotransmitter between axons and dendrites</p></div></p><p id="88bb216e-d02c-4a1e-841e-da16202e6a46" class="">Autocrine signaling<div class="indented"><p id="22adfc32-c382-40a6-910e-2a8a03963b1c" class="">T cell release cytokines that signal them to release more cytokines</p></div></p></div></p><p id="e9af240e-d23d-4b3b-8969-e69f4f256d42" class="">Long-Distance Signaling<div class="indented"><p id="5406e0c5-d5f6-40d1-ac81-a89841705fed" class="">Hormones</p></div></p></div></p><p id="2c21151f-2508-45f8-ab9c-0270da76b017" class="">Stages of Cell Communication <mark class="highlight-red">Not needed for Midterm exam</mark><div class="indented"><p id="7674ca5e-e436-4ae1-b60c-d72bd99a4653" class="">Reception<div class="indented"><p id="3e51c8c1-c3e9-4692-ba08-940e471dd165" class="">Ligand binds to receptor<div class="indented"><p id="5d92b5e5-a8d4-4b3a-833e-e4b9a7805b30" class="">Water-soluble signaling molecules<div class="indented"><p id="4ff3afe1-329b-4ebd-8af2-cbacdecfcc5b" class="">Trigger response on protein on the cell membrane, and carried to the cell by second messengers (e.g., cyclic AMP)</p><p id="9e4b60d1-b43a-4da0-9909-2eb3d0d347fd" class="">Ion-channel receptors<div class="indented"><p id="bbdac506-8c5c-405a-8dbb-a66fbcf6b189" class="">Ligand can trigger the ion channel to open</p></div></p><p id="1bb2d0f9-28f7-47b3-b64c-6c25da4771b1" class="">G protein-coupled receptors (GPCR)<div class="indented"><p id="1692368d-8db4-45ee-b379-6330c9147385" class="">Ligand trigger the receptor, and G protein activated</p></div></p><p id="9b5b202a-bbcf-4360-b1f2-f22f4f6793ac" class="">Receptor tyrosine kinases (RTKs)<div class="indented"><p id="2d535b51-324e-4fd3-a679-ff8ecf9487c4" class="">Ligand binds to receptor tyrosine kinase and ATP gives a P to </p></div></p></div></p><p id="82d54bb1-77d9-4c7b-bfac-52974b9706d8" class="">Receptor inside the cell<div class="indented"><p id="70df3f14-f2ee-405e-8ebd-457a8141ee16" class="">For substance like steroids, thyroids, NO</p></div></p></div></p></div></p><p id="bbe2fd00-6694-43c1-9aef-b8dd13393b9c" class="">Transduction<div class="indented"><p id="f9e16471-ecf9-4699-97d4-9420a9d28b8f" class="">The signal is converted to form a certain cellular response</p></div></p><p id="073e5aa6-8d1c-417e-abea-3710e1dae5ef" class="">Response<div class="indented"><p id="28af100e-82e5-4124-80b8-58dd76c17500" class="">A response occur</p></div></p><p id="f168666c-1af1-40d7-8c04-59f465c03dda" class="">Cascade Effect<div class="indented"><p id="ebae2be4-2de6-438b-84f7-2546fe4f6e14" class="">A large amount of molecules released as to the response to the release of one molecule</p></div></p></div></p><p id="e8d59369-e9a8-4fd8-8525-2d97d0946384" class="">Apoptosis<div class="indented"><p id="33ad3e79-b9f5-4cf5-a341-a8298ac765ce" class="">Programmed cell death<div class="indented"><p id="7e5e6d27-8829-455c-b346-9b64644737dd" class="">e.g, cancer cell, infected cells, unneeded cells.</p><p id="45ea21c4-057a-4b4a-aaec-2aeefd1561c9" class="">
+</p></div></p></div></p></div></p></div></article></body></html>
